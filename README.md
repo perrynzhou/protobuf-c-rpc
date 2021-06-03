@@ -6,6 +6,14 @@ This is `protobuf-c-rpc`, a library for performing RPC with `protobuf-c`. It was
 
 ## Building
 
+```
+wget https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.17.2.tar.gz
+cd /root/protobuf-3.17.2 && ./autogen.sh && ./configure && make -j8 && make install
+echo '/usr/local/lib' > /etc/ld.so.conf.d/pb.conf
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+yum install protobuf-c.x86_64 protobuf-c-compiler.x86_64 protobuf-c-devel.x86_64 -y
+```
 `protobuf-c-rpc` requires a C compiler, [protobuf-c](https://github.com/protobuf-c/protobuf-c), and `pkg-config` to be installed. `protobuf-c` itself requires [Google Protocol Buffers](https://developers.google.com/protocol-buffers/) to be installed.
 
     ./configure && make && make install
@@ -19,3 +27,11 @@ If building from a git checkout, the `autotools` (`autoconf`, `automake`, `libto
 Please send patches to the [protobuf-c mailing list](https://groups.google.com/forum/#!forum/protobuf-c) or by opening a GitHub pull request.
 
 Copyright to all contributions are retained by the original author, but must be licensed under the terms of the [BSD-2-Clause](http://opensource.org/licenses/BSD-2-Clause) license. Please add a `Signed-off-by` header to your commit message (`git commit -s`) to indicate that you are licensing your contribution under these terms.
+
+## build example
+
+```
+protoc-c --c_out=. dirlookup.proto 
+gcc example-server.c，gcc example-server.c dirlookup.pb-c.c -o server -lprotobuf-c-rpc -lprotobuf-c
+gcc example-client.c，gcc example-client.c dirlookup.pb-c.c -o client -lprotobuf-c-rpc -lprotobuf-c
+```
