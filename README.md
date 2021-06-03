@@ -7,12 +7,7 @@ This is `protobuf-c-rpc`, a library for performing RPC with `protobuf-c`. It was
 ## Building
 
 ```
-wget https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.17.2.tar.gz
-cd /root/protobuf-3.17.2 && ./autogen.sh && ./configure && make -j8 && make install
-echo '/usr/local/lib' > /etc/ld.so.conf.d/pb.conf
-
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-yum install protobuf-c.x86_64 protobuf-c-compiler.x86_64 protobuf-c-devel.x86_64 -y
+yum install protobuf protobuf-compiler protobuf-devel protobuf-c protobuf-c-compiler protobuf-c-devel -y
 ```
 `protobuf-c-rpc` requires a C compiler, [protobuf-c](https://github.com/protobuf-c/protobuf-c), and `pkg-config` to be installed. `protobuf-c` itself requires [Google Protocol Buffers](https://developers.google.com/protocol-buffers/) to be installed.
 
